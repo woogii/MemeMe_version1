@@ -14,6 +14,7 @@
 		D2955FE51BD51DA200D7EDFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2955FE31BD51DA200D7EDFB /* LaunchScreen.storyboard */; };
 		D2955FF01BD51DA300D7EDFB /* MemeMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2955FEF1BD51DA300D7EDFB /* MemeMeTests.swift */; };
 		D2955FFB1BD51DA300D7EDFB /* MemeMeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2955FFA1BD51DA300D7EDFB /* MemeMeUITests.swift */; };
+		D2DBD1DA1BE2761100CA7EFF /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DBD1D91BE2761100CA7EFF /* Meme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		D2955FF61BD51DA300D7EDFB /* MemeMeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MemeMeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2955FFA1BD51DA300D7EDFB /* MemeMeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeMeUITests.swift; sourceTree = "<group>"; };
 		D2955FFC1BD51DA300D7EDFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D2DBD1D91BE2761100CA7EFF /* Meme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				D2955FDA1BD51DA200D7EDFB /* AppDelegate.swift */,
 				D2955FDC1BD51DA200D7EDFB /* ViewController.swift */,
 				D2955FDE1BD51DA200D7EDFB /* Main.storyboard */,
+				D2DBD1D91BE2761100CA7EFF /* Meme.swift */,
 				D2955FE11BD51DA200D7EDFB /* Assets.xcassets */,
 				D2955FE31BD51DA200D7EDFB /* LaunchScreen.storyboard */,
 				D2955FE61BD51DA200D7EDFB /* Info.plist */,
@@ -256,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2DBD1DA1BE2761100CA7EFF /* Meme.swift in Sources */,
 				D2955FDD1BD51DA200D7EDFB /* ViewController.swift in Sources */,
 				D2955FDB1BD51DA200D7EDFB /* AppDelegate.swift in Sources */,
 			);

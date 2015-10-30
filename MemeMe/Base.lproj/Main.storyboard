@@ -33,8 +33,16 @@
                                 </constraints>
                                 <items>
                                     <navigationItem id="WQ8-ml-jIN">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="cca-qt-xyr"/>
-                                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="cof-e6-Nqu"/>
+                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="cca-qt-xyr">
+                                            <connections>
+                                                <action selector="shareMeme:" destination="BYZ-38-t0r" id="HEd-QT-DQu"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="cof-e6-Nqu">
+                                            <connections>
+                                                <action selector="cancelMeme:" destination="BYZ-38-t0r" id="Dwm-Mj-e8f"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                                 <variation key="default">
@@ -100,8 +108,12 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="cameraButton" destination="VKv-X1-NHY" id="QPg-4i-oLU"/>
+                        <outlet property="cancelButton" destination="cof-e6-Nqu" id="uCz-A6-3dR"/>
                         <outlet property="imagePickerView" destination="wFt-bF-eN9" id="mQM-OV-lLk"/>
                         <outlet property="lowerTextField" destination="ixj-5V-o1Q" id="42Z-p0-7Mc"/>
+                        <outlet property="navBar" destination="w5L-eG-kK4" id="G0I-5B-rgx"/>
+                        <outlet property="shareButton" destination="cca-qt-xyr" id="VVl-of-GOc"/>
+                        <outlet property="toolBar" destination="CEJ-Zr-mxs" id="CDk-eO-LJz"/>
                         <outlet property="upperTextField" destination="NYC-cs-2iK" id="Sff-zB-Foj"/>
                     </connections>
                 </viewController>
