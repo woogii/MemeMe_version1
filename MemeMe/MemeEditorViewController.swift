@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,
+class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,
     UITextFieldDelegate{
     
     @IBOutlet weak var lowerTextField: UITextField!
@@ -37,17 +37,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewDidLoad()
         
         // Set default attribute of input text
-        self.lowerTextField.defaultTextAttributes = memeTextAttributes
-        self.upperTextField.defaultTextAttributes = memeTextAttributes
+        lowerTextField.defaultTextAttributes = memeTextAttributes
+        upperTextField.defaultTextAttributes = memeTextAttributes
        
-        self.upperTextField.textAlignment = .Center
-        self.upperTextField.tag = 0
+        upperTextField.textAlignment = .Center
+        lowerTextField.textAlignment = .Center
 
-        self.lowerTextField.textAlignment = .Center
-        self.lowerTextField.tag = 1
         
-        self.upperTextField.delegate = self
-        self.lowerTextField.delegate = self
+        upperTextField.delegate = self
+        lowerTextField.delegate = self
         
         shareButton.enabled = false
     }
@@ -55,13 +53,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
-        self.subscribeToKeyboardNotifications()
+        subscribeToKeyboardNotifications()
         
     }
     
     override func viewWillDisappear(animated:Bool){
         super.viewWillDisappear(animated)
-        self.unsubscribeFromKeyboardNotifications()
+        unsubscribeFromKeyboardNotifications()
     }
     
  
@@ -101,7 +99,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imagePicker.delegate = self
         // check whether source is from camera or photo library
         imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
-        self.presentViewController(imagePicker, animated: true, completion: nil)
+        presentViewController(imagePicker, animated: true, completion: nil)
     }
     
     @IBAction func pickAnImageFromAlbum(sender: AnyObject) {
@@ -109,7 +107,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imagePicker.delegate = self
         // check whether source is from camera or photo library
         imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        self.presentViewController(imagePicker, animated: true, completion: nil)
+        presentViewController(imagePicker, animated: true, completion: nil)
     }
     
     @IBAction func cancelMeme(sender: AnyObject) {
@@ -121,7 +119,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         let activityViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
         
-        self.presentViewController(activityViewController, animated: true, completion: nil)
+        presentViewController(activityViewController, animated: true, completion: nil)
         
         // completionWithItemsHandler let application know the final result of the operation
         activityViewController.completionWithItemsHandler = {
@@ -141,7 +139,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         didFinishPickingMediaWithInfo info: [String : AnyObject])
     {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            self.imagePickerView.image = image
+            imagePickerView.image = image
             picker.dismissViewControllerAnimated(true, completion: nil)
         }
         cancelButton.enabled = false
@@ -173,10 +171,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-        // set preset text if text field is empty. topTextField tag is 0 bottomTextField tag is 1
-        if textField.text!.isEmpty && textField.tag == 0 {
+        // set preset text if text field is empty
+        if lowerTextField.text!.isEmpty  {
             textField.text = "TOP"
-        } else if textField.text!.isEmpty && textField.tag == 1{
+        } else if upperTextField.text!.isEmpty {
             textField.text = "BOTTOM"
         }
     
@@ -200,14 +198,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func keyboardWillShow(notification:NSNotification) {
         
         if( lowerTextField.isFirstResponder()){
-            self.view.frame.origin.y -= getKeyboardHeight(notification)
+            view.frame.origin.y -= getKeyboardHeight(notification)
         }
     }
     
     func keyboardWillHide(notification:NSNotification) {
         
         if ( lowerTextField.isFirstResponder()) {
-            self.view.frame.origin.y += getKeyboardHeight(notification)
+            view.frame.origin.y += getKeyboardHeight(notification)
         }
     }
     
