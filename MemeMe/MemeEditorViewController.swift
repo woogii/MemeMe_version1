@@ -22,32 +22,31 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     var memedImage:UIImage!
     
     
-    let memeTextAttributes = [
-        NSStrokeColorAttributeName : UIColor.blackColor(),              // describe outline color
-        NSForegroundColorAttributeName : UIColor.whiteColor(),          // specify the color of the text
-        NSBackgroundColorAttributeName: UIColor .clearColor(),
-        NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-        NSStrokeWidthAttributeName : -3.0                              // specify negative values to stroke and fill the text
-    ]
-    
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Set default attribute of input text
-        lowerTextField.defaultTextAttributes = memeTextAttributes
-        upperTextField.defaultTextAttributes = memeTextAttributes
-       
-        upperTextField.textAlignment = .Center
-        lowerTextField.textAlignment = .Center
-
-        
-        upperTextField.delegate = self
-        lowerTextField.delegate = self
+        prepareTextField(lowerTextField)
+        prepareTextField(upperTextField)
         
         shareButton.enabled = false
+    }
+    
+    func prepareTextField(textField:UITextField) {
+        
+        let memeTextAttributes = [
+            NSStrokeColorAttributeName : UIColor.blackColor(),              // describe outline color
+            NSForegroundColorAttributeName : UIColor.whiteColor(),          // specify the color of the text
+            NSBackgroundColorAttributeName: UIColor .clearColor(),
+            NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+            NSStrokeWidthAttributeName : -3.0                              // specify negative values to stroke and fill the text
+        ]
+        
+        textField.delegate = self
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.textAlignment = .Center
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -79,8 +78,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         toolBar.hidden = true
         
         // Render view to an image
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        self.view.drawViewHierarchyInRect(self.view.frame,
+        UIGraphicsBeginImageContext(view.frame.size)
+        view.drawViewHierarchyInRect(view.frame,
             afterScreenUpdates: true)
         let memedImage : UIImage =
         UIGraphicsGetImageFromCurrentImageContext()
@@ -115,7 +114,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
  
     @IBAction func shareMeme(sender: AnyObject) {
-        self.memedImage = generateMemedImage()          // generate a memed image
+        memedImage = generateMemedImage()          // generate a memed image
         
         let activityViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
         
@@ -198,14 +197,14 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     func keyboardWillShow(notification:NSNotification) {
         
         if( lowerTextField.isFirstResponder()){
-            view.frame.origin.y -= getKeyboardHeight(notification)
+            view.frame.origin.y = -getKeyboardHeight(notification)
         }
     }
     
     func keyboardWillHide(notification:NSNotification) {
         
         if ( lowerTextField.isFirstResponder()) {
-            view.frame.origin.y += getKeyboardHeight(notification)
+            view.frame.origin.y = 0
         }
     }
     
